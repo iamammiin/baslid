@@ -1,0 +1,1173 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Baslid Project Api Documentation",
+        "description": "This is a documentation for the Baslid Project witch is produced by Swagger",
+        "contact": {
+            "email": "aminmohammadmazreali@gmail.com"
+        },
+        "license": {
+            "name": "Nginx 1.17.7",
+            "url": "https://nginx.org/LICENSE"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080/api",
+            "description": "Base Url"
+        }
+    ],
+    "paths": {
+        "/api": {},
+        "/auth/change-password": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "change user password",
+                "description": "change user password",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChangePasswordUserRequestBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Unauthenticated"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "client_bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/auth/profile": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "user profile",
+                "description": "user profile",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/UserDTO"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Unauthenticated"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "client_bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "login user",
+                "description": "login user",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginUserRequestBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/UserDTO"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Unauthenticated"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "logout user",
+                "description": "logout user",
+                "responses": {
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Unauthenticated"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "client_bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/auth/refresh": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "refresh user token",
+                "description": "refresh user token",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/UserDTO"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Unauthenticated"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "client_bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "register user",
+                "description": "register new user",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterUserRequestBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/UserDTO"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/update": {
+            "patch": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "update user",
+                "description": "update user information, please just send changed items",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserRequestBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/UserDTO"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Unauthenticated"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "client_bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/auth/upload-avatar": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "upload user avatar",
+                "description": "upload user avatar",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UploadAvatarUserRequestBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/UserDTO"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Unauthenticated"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "client_bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/product-statistic/earning-history": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "get earning history",
+                "description": "get earning history for user",
+                "parameters": [
+                    {
+                        "name": "prevDays",
+                        "in": "query",
+                        "description": "previous days for report",
+                        "required": false,
+                        "schema": {
+                            "type": "int"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation when send prevDays",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/EarningHistoryForPrevDaysDTO"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "2000": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/EarningHistoryForYearDaysDTO"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Unauthenticated"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "client_bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/product-statistic": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "get product statistic for user",
+                "description": "get product statistic for user",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "current page",
+                        "required": false,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "count of product in page",
+                        "required": false,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "orderField",
+                        "in": "query",
+                        "description": "name of field for sort",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "orderType",
+                        "in": "query",
+                        "description": "type of sort for example:ASC, DESC",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ListProductStatisticDTO"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Unauthenticated"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "client_bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/product-statistic/{userDiscountCode}": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "summary": "store new product statistic for user",
+                "description": "store new product statistic for user",
+                "parameters": [
+                    {
+                        "name": "userDiscountCode",
+                        "in": "path",
+                        "description": "user discount code",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreProductStatisticRequestBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ProductStatisticDTO"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "EarningHistoryForPrevDaysDTO": {
+                "title": "Get Earning history Dto",
+                "description": "Get Earning history data",
+                "properties": {
+                    "2023-05-1": {
+                        "title": "2023-05-1",
+                        "type": "integer",
+                        "example": 13
+                    },
+                    "2023-05-2": {
+                        "title": "2023-05-2",
+                        "type": "integer",
+                        "example": 145
+                    },
+                    "2023-05-3": {
+                        "title": "2023-05-3",
+                        "type": "integer",
+                        "example": 113
+                    },
+                    "2023-05-4": {
+                        "title": "2023-05-4",
+                        "type": "integer",
+                        "example": 100
+                    },
+                    "2023-05-5": {
+                        "title": "2023-05-5",
+                        "type": "integer",
+                        "example": 0
+                    }
+                },
+                "type": "object"
+            },
+            "EarningHistoryForYearDaysDTO": {
+                "title": "Get Earning history Dto",
+                "description": "Get Earning history data",
+                "properties": {
+                    "1": {
+                        "title": "1",
+                        "type": "integer",
+                        "example": 223
+                    },
+                    "2": {
+                        "title": "2",
+                        "type": "integer",
+                        "example": 13
+                    },
+                    "3": {
+                        "title": "3",
+                        "type": "integer",
+                        "example": 4
+                    },
+                    "4": {
+                        "title": "4",
+                        "type": "integer",
+                        "example": 54
+                    },
+                    "5": {
+                        "title": "5",
+                        "type": "integer",
+                        "example": 133
+                    },
+                    "6": {
+                        "title": "6",
+                        "type": "integer",
+                        "example": 11
+                    },
+                    "7": {
+                        "title": "7",
+                        "type": "integer",
+                        "example": 43
+                    },
+                    "8": {
+                        "title": "8",
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "9": {
+                        "title": "9",
+                        "type": "integer",
+                        "example": 5
+                    },
+                    "10": {
+                        "title": "10",
+                        "type": "integer",
+                        "example": 6
+                    },
+                    "11": {
+                        "title": "11",
+                        "type": "integer",
+                        "example": 22
+                    },
+                    "12": {
+                        "title": "12",
+                        "type": "integer",
+                        "example": 135
+                    }
+                },
+                "type": "object"
+            },
+            "ListProductStatisticDTO": {
+                "title": "list of Product Statistic Dto",
+                "description": "list of Product Statistic data",
+                "properties": {
+                    "currentPage": {
+                        "title": "currentPage",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "from": {
+                        "title": "from",
+                        "type": "string",
+                        "example": 1
+                    },
+                    "lastPage": {
+                        "title": "lastPage",
+                        "type": "integer",
+                        "example": 5
+                    },
+                    "perPage": {
+                        "title": "perPage",
+                        "type": "integer",
+                        "example": 15
+                    },
+                    "to": {
+                        "title": "to",
+                        "type": "integer",
+                        "example": 10
+                    },
+                    "total": {
+                        "title": "total",
+                        "type": "integer",
+                        "example": 10
+                    },
+                    "content": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProductStatisticDTO"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Unauthenticated": {
+                "title": "Unauthenticated",
+                "description": "Unauthenticated Request",
+                "properties": {
+                    "message": {
+                        "title": "message",
+                        "type": "string",
+                        "example": "Unauthenticated"
+                    }
+                },
+                "type": "object"
+            },
+            "NotFound": {
+                "title": "notFound",
+                "description": "notFound Request",
+                "properties": {
+                    "message": {
+                        "title": "message",
+                        "type": "string",
+                        "example": "not Found"
+                    },
+                    "code": {
+                        "title": "code",
+                        "type": "integer",
+                        "example": "404"
+                    }
+                },
+                "type": "object"
+            },
+            "BadRequest": {
+                "title": "badRequest",
+                "description": "Bad Request",
+                "properties": {
+                    "message": {
+                        "title": "message",
+                        "type": "string",
+                        "example": "Bad Request"
+                    },
+                    "code": {
+                        "title": "code",
+                        "type": "integer",
+                        "example": "400"
+                    }
+                },
+                "type": "object"
+            },
+            "ChangePasswordUserRequestBody": {
+                "title": "Change Password User Request Body",
+                "description": "Change Password User Request Body",
+                "properties": {
+                    "currentPassword": {
+                        "title": "currentPassword",
+                        "description": "current password of user",
+                        "type": "string",
+                        "example": "123456"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "password of user",
+                        "type": "string",
+                        "example": "1234567"
+                    }
+                },
+                "type": "object"
+            },
+            "LoginUserRequestBody": {
+                "title": "login User Request Body",
+                "description": "login User Request Body",
+                "properties": {
+                    "email": {
+                        "title": "email",
+                        "description": "email of user",
+                        "type": "string",
+                        "example": "amin@gmail.com"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "password of user",
+                        "type": "string",
+                        "example": "123456"
+                    }
+                },
+                "type": "object"
+            },
+            "RegisterUserRequestBody": {
+                "title": "Register User Request Body",
+                "description": "Register User Request Body",
+                "properties": {
+                    "firstName": {
+                        "title": "firstName",
+                        "description": "first name of user",
+                        "type": "string",
+                        "example": "Amin"
+                    },
+                    "lastName": {
+                        "title": "lastName",
+                        "description": "last name of user",
+                        "type": "string",
+                        "example": "Mazreali"
+                    },
+                    "phone": {
+                        "title": "phone",
+                        "description": "phone of user",
+                        "type": "string",
+                        "example": "09214125578"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "type of user",
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "email of user",
+                        "type": "string",
+                        "example": "amin@gmail.com"
+                    },
+                    "country": {
+                        "title": "country",
+                        "description": "country of user",
+                        "type": "string",
+                        "example": "iran"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "password of user",
+                        "type": "string",
+                        "example": "123456"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateUserRequestBody": {
+                "title": "Update User Request Body",
+                "description": "Update User Request Body",
+                "properties": {
+                    "firstName": {
+                        "title": "firstName",
+                        "description": "first name of user",
+                        "type": "string",
+                        "example": "Amin"
+                    },
+                    "lastName": {
+                        "title": "lastName",
+                        "description": "last name of user",
+                        "type": "string",
+                        "example": "Mazreali"
+                    },
+                    "phone": {
+                        "title": "phone",
+                        "description": "phone of user",
+                        "type": "string",
+                        "example": "09214125578"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "type of user",
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "email of user",
+                        "type": "string",
+                        "example": "amin@gmail.com"
+                    },
+                    "country": {
+                        "title": "country",
+                        "description": "country of user",
+                        "type": "string",
+                        "example": "iran"
+                    },
+                    "address": {
+                        "title": "address",
+                        "description": "address of user",
+                        "type": "string",
+                        "example": "iran,tehran,vanak"
+                    },
+                    "language": {
+                        "title": "language",
+                        "description": "language of user",
+                        "type": "string",
+                        "example": "English"
+                    },
+                    "price": {
+                        "title": "price",
+                        "description": "price of user",
+                        "type": "string",
+                        "example": "Rial"
+                    },
+                    "biography": {
+                        "title": "biography",
+                        "description": "biography of user",
+                        "type": "string",
+                        "example": "i am amin, ..."
+                    },
+                    "paypalAddress": {
+                        "title": "paypalAddress",
+                        "description": "Paypal address of user",
+                        "type": "string",
+                        "example": "paypal.com/amin"
+                    },
+                    "discountPercent": {
+                        "title": "discountPercent",
+                        "description": "discount percent of user",
+                        "type": "integer",
+                        "example": 10
+                    }
+                },
+                "type": "object"
+            },
+            "UploadAvatarUserRequestBody": {
+                "title": "Upload Avatar User Request Body",
+                "description": "Upload Avatar User Request Body",
+                "properties": {
+                    "avatar": {
+                        "title": "avatar",
+                        "description": "avatar of user",
+                        "type": "string",
+                        "format": "binary"
+                    }
+                },
+                "type": "object"
+            },
+            "StoreProductStatisticRequestBody": {
+                "title": "Store Product Statistic Request Body",
+                "description": "Store Product Statistic Request Body",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "name of product",
+                        "type": "string",
+                        "example": "mouse"
+                    },
+                    "image": {
+                        "title": "image",
+                        "description": "image url of product",
+                        "type": "string",
+                        "example": "mouse.jpeg"
+                    },
+                    "date": {
+                        "title": "date",
+                        "description": "date of product",
+                        "type": "string",
+                        "example": "2023-05-05"
+                    },
+                    "tendered": {
+                        "title": "tendered",
+                        "description": "tendered of product",
+                        "type": "integer",
+                        "example": 200
+                    },
+                    "earning": {
+                        "title": "earning",
+                        "description": "earning of product",
+                        "type": "integer",
+                        "example": 10
+                    },
+                    "status": {
+                        "title": "status",
+                        "description": "paid status of product",
+                        "type": "boolean",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "ProductStatisticDTO": {
+                "title": "Product Statistic Dto",
+                "description": "Product Statistic data",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "name of product",
+                        "type": "string",
+                        "example": "mouse"
+                    },
+                    "image": {
+                        "title": "image",
+                        "description": "image url of product",
+                        "type": "string",
+                        "example": "mouse.jpeg"
+                    },
+                    "date": {
+                        "title": "date",
+                        "description": "date of product",
+                        "type": "string",
+                        "example": "2023-05-05"
+                    },
+                    "tendered": {
+                        "title": "tendered",
+                        "description": "tendered of product",
+                        "type": "integer",
+                        "example": 200
+                    },
+                    "earning": {
+                        "title": "earning",
+                        "description": "earning of product",
+                        "type": "integer",
+                        "example": 10
+                    },
+                    "status": {
+                        "title": "status",
+                        "description": "paid status of product",
+                        "type": "boolean",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "UserDTO": {
+                "title": "User Dto",
+                "description": "User data",
+                "properties": {
+                    "firstName": {
+                        "title": "firstName",
+                        "description": "first name of user",
+                        "type": "string",
+                        "example": "Amin"
+                    },
+                    "lastName": {
+                        "title": "lastName",
+                        "description": "last name of user",
+                        "type": "string",
+                        "example": "Mazreali"
+                    },
+                    "phone": {
+                        "title": "phone",
+                        "description": "phone of user",
+                        "type": "string",
+                        "example": "09214125578"
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "type of user",
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "email of user",
+                        "type": "string",
+                        "example": "amin@gmail.com"
+                    },
+                    "country": {
+                        "title": "country",
+                        "description": "country of user",
+                        "type": "string",
+                        "example": "iran"
+                    },
+                    "id": {
+                        "title": "id",
+                        "description": "id of user",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "address": {
+                        "title": "address",
+                        "description": "address of user",
+                        "type": "string",
+                        "example": "Iran, Test"
+                    },
+                    "avatar": {
+                        "title": "avatar",
+                        "description": "avatar of user",
+                        "type": "string",
+                        "example": "test.png"
+                    },
+                    "language": {
+                        "title": "language",
+                        "description": "language of user",
+                        "type": "string",
+                        "example": "Persian"
+                    },
+                    "price": {
+                        "title": "price",
+                        "description": "price of user",
+                        "type": "string",
+                        "example": "Euro"
+                    },
+                    "biography": {
+                        "title": "biography",
+                        "description": "biography of user",
+                        "type": "string",
+                        "example": "test, test"
+                    },
+                    "paypalAddress": {
+                        "title": "paypalAddress",
+                        "description": "paypal address of user",
+                        "type": "string",
+                        "example": "paypal.com"
+                    },
+                    "token": {
+                        "title": "token",
+                        "description": "token of user",
+                        "type": "string",
+                        "example": "jwt token"
+                    },
+                    "discountCode": {
+                        "title": "discountCode",
+                        "description": "discount code of user",
+                        "type": "string",
+                        "example": "1231241"
+                    },
+                    "discountPercent": {
+                        "title": "discountPercent",
+                        "description": "discount percent of user",
+                        "type": "integer",
+                        "example": 10
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "client_bearer_token": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "authorization",
+                "in": "header"
+            }
+        }
+    }
+}

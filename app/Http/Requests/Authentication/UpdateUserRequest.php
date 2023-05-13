@@ -48,7 +48,7 @@ class UpdateUserRequest extends FormRequest
             UserApiField::LAST_NAME => 'nullable|min:3|max:195',
             UserApiField::PHONE => 'nullable|min:3|max:20',
             UserApiField::TYPE => 'nullable|min:1|in:'. implode(',',Type::AVAILABLE_TYPE),
-            UserApiField::EMAIL => 'nullable|email|min:1|max:195|unique:Users,email,'.auth()->user()->id,
+            UserApiField::EMAIL => 'nullable|email|min:1|max:195|unique:users,email,'.auth()->user()->id,
             UserApiField::COUNTRY => 'nullable',
             UserApiField::ADDRESS => 'nullable',
             UserApiField::LANGUAGE => 'nullable',

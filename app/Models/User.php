@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Constant\ProductStatistic\ProductStatisticDatabaseField;
 use App\Constant\User\UserDatabaseField;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -33,6 +34,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *      @OA\Property(property="token", title="token", description="token of user", type="string", example="jwt token"),
  *      @OA\Property(property="discountCode", title="discountCode", description="discount code of user", type="string", example="1231241"),
  *      @OA\Property(property="discountPercent", title="discountPercent", description="discount percent of user", type="int", example=10),
+ *      @OA\Property(property="salesProductCount", title="salesProductCount", description="sales product count of user", type="int", example=30),
+ *      @OA\Property(property="balance", title="balance", description="balance of user", type="int", example=3000),
  * )
  */
 class User extends Authenticatable implements JWTSubject
@@ -55,6 +58,7 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password',
         'remember_token',
+        'productStatistic'
     ];
 
     /**
@@ -67,6 +71,24 @@ class User extends Authenticatable implements JWTSubject
         'created_at' => 'datetime:Y-m-d',
         'updated_at' => 'datetime:Y-m-d',
     ];
+
+    protected $appends = [
+        'salesProductCount',
+        'balance'
+    ];
+
+    public function getSalesProductCountAttribute()
+    {
+        return count($this->productStatistic);
+    }
+
+    public function getBalanceAttribute()
+    {
+        $date = Carbon::now();
+        return (int) $this->productStatistic()->whereYear(ProductStatisticDatabaseField::DATE, $date->year)
+            ->whereMonth(ProductStatisticDatabaseField::DATE, $date->month)
+            ->sum(ProductStatisticDatabaseField::EARNING);
+    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.

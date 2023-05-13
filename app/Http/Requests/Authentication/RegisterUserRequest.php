@@ -43,7 +43,7 @@ class RegisterUserRequest extends FormRequest
             UserApiField::LAST_NAME => 'required|max:195',
             UserApiField::PHONE => 'required|max:20',
             UserApiField::TYPE => 'required|in:'. implode(',',Type::AVAILABLE_TYPE),
-            UserApiField::EMAIL => 'required|email|max:195|unique:Users',
+            UserApiField::EMAIL => 'required|email|max:195|unique:users',
             UserApiField::PASSWORD => 'required|min:6',
             UserApiField::COUNTRY => 'required',
             UserApiField::ADDRESS => 'nullable',

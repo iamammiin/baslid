@@ -19,6 +19,9 @@ class UserDatabaseField
     const PAYPAL_ADDRESS = 'paypal_address';
     const DISCOUNT_CODE = 'discount_code';
     const DISCOUNT_PERCENT = 'discount_percent';
+    const INSTAGRAM_USERNAME = 'instagram_username';
+    const YOUTUBE_USERNAME = 'youtube_username';
+    const TIKTOK_USERNAME = 'tiktok_username';
     const AVAILABLE_FOR_CREATE_OR_UPDATE = [
         self::FIRST_NAME,
         self::LAST_NAME,
@@ -34,6 +37,9 @@ class UserDatabaseField
         self::BIOGRAPHY,
         self::PAYPAL_ADDRESS,
         self::DISCOUNT_CODE,
-        self::DISCOUNT_PERCENT
+        self::DISCOUNT_PERCENT,
+        self::INSTAGRAM_USERNAME,
+        self::YOUTUBE_USERNAME,
+        self::TIKTOK_USERNAME
     ];
 }

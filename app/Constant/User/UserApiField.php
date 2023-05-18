@@ -23,4 +23,7 @@ class UserApiField
 
     const DISCOUNT_CODE = 'discountCode';
     const DISCOUNT_PERCENT = 'discountPercent';
+    const INSTAGRAM_USERNAME = 'instagramUsername';
+    const YOUTUBE_USERNAME = 'youtubeUsername';
+    const TIKTOK_USERNAME = 'tiktokUsername';
 }

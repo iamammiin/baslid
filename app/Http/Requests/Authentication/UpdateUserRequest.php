@@ -24,6 +24,9 @@ use Illuminate\Foundation\Http\FormRequest;
  *      @OA\Property(property="biography", title="biography", description="biography of user", type="string", example="i am amin, ..."),
  *      @OA\Property(property="paypalAddress", title="paypalAddress", description="Paypal address of user", type="string", example="paypal.com/amin"),
  *      @OA\Property(property="discountPercent", title="discountPercent", description="discount percent of user", type="int", example=10),
+ *      @OA\Property(property="instagramUsername", title="instagramUsername", description="instagram username of user", type="string", example="iamammiin"),
+ *      @OA\Property(property="youtubeUsername", title="youtubeUsername", description="youtube username of user", type="string", example="iamammiin"),
+ *      @OA\Property(property="tiktokUsername", title="tiktokUsername", description="tiktok username of user", type="string", example="iamammiin")
  * )
  */
 class UpdateUserRequest extends FormRequest
@@ -56,6 +59,9 @@ class UpdateUserRequest extends FormRequest
             UserApiField::BIOGRAPHY => 'nullable',
             UserApiField::PAYPAL_ADDRESS => 'nullable',
             UserApiField::DISCOUNT_PERCENT => 'nullable|int',
+            UserApiField::INSTAGRAM_USERNAME => 'nullable|string',
+            UserApiField::YOUTUBE_USERNAME => 'nullable|string',
+            UserApiField::TIKTOK_USERNAME => 'nullable|string',
         ];
     }
 }

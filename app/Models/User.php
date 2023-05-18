@@ -23,11 +23,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *      @OA\Property(property="phone", title="phone", description="phone of user", type="string", example="09214125578"),
  *      @OA\Property(property="type", title="type", description="type of user", type="int", example=2),
  *      @OA\Property(property="email", title="email", description="email of user", type="string", example="amin@gmail.com"),
- *      @OA\Property(property="country", title="country", description="country of user", type="string", example="iran"),
+ *      @OA\Property(property="country", title="country", description="country of user", type="string", example="USA"),
  *      @OA\Property(property="id", title="id", description="id of user", type="int", example=1),
- *      @OA\Property(property="address", title="address", description="address of user", type="string", example="Iran, Test"),
+ *      @OA\Property(property="address", title="address", description="address of user", type="string", example="USA, Test"),
  *      @OA\Property(property="avatar", title="avatar", description="avatar of user", type="string", example="test.png"),
- *      @OA\Property(property="language", title="language", description="language of user", type="string", example="Persian"),
+ *      @OA\Property(property="language", title="language", description="language of user", type="string", example="English"),
  *      @OA\Property(property="price", title="price", description="price of user", type="string", example="Euro"),
  *      @OA\Property(property="biography", title="biography", description="biography of user", type="string", example="test, test"),
  *      @OA\Property(property="paypalAddress", title="paypalAddress", description="paypal address of user", type="string", example="paypal.com"),
@@ -36,6 +36,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *      @OA\Property(property="discountPercent", title="discountPercent", description="discount percent of user", type="int", example=10),
  *      @OA\Property(property="salesProductCount", title="salesProductCount", description="sales product count of user", type="int", example=30),
  *      @OA\Property(property="balance", title="balance", description="balance of user", type="int", example=3000),
+ *      @OA\Property(property="instagramUsername", title="instagramUsername", description="instagram username of user", type="string", example="iamammiin"),
+ *      @OA\Property(property="youtubeUsername", title="youtubeUsername", description="youtube username of user", type="string", example="iamammiin"),
+ *      @OA\Property(property="tiktokUsername", title="tiktokUsername", description="tiktok username of user", type="string", example="iamammiin"),
  * )
  */
 class User extends Authenticatable implements JWTSubject

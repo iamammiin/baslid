@@ -18,6 +18,11 @@ use App\Http\Controllers\ProductStatistic\ {
     GetListController,
     GetEarningHistoryController
 };
+use App\Http\Controllers\User\{
+    AcceptOrRejectDiscountController,
+    GetListController as GetListUserController
+
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +51,14 @@ Route::group([
         Route::post('/upload-avatar', UploadAvatarController::class);
         Route::patch('/update', UpdateController::class);
     });
+});
+
+Route::group([
+    'middleware' => 'auth:api',
+    'prefix' => 'users'
+], function () {
+    Route::post('/{userId}/accept-reject-discount', AcceptOrRejectDiscountController::class);
+    Route::get('/', GetListUserController::class);
 });
 
 Route::post('/product-statistic/{userDiscountCode}', StoreController::class);

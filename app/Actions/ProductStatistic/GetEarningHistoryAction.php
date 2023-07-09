@@ -51,7 +51,7 @@ class GetEarningHistoryAction extends Action
         $user = auth()->user();
         if (isset($data['prevDays']) && $data['prevDays'] <= 60 && $data['prevDays'] >= 1) {
             $firstDay = Carbon::now()->subDays((int)$data['prevDays'])->toDateString();
-            $lastDay = Carbon::make($firstDay)->addDays((int)$data['prevDays'] - 1)->toDateString();
+            $lastDay = Carbon::make($firstDay)->addDays((int)$data['prevDays'])->toDateString();
 
             $days = CarbonPeriod::create($firstDay, $lastDay);
             foreach ($days as $day) {

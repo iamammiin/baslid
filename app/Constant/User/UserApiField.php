@@ -18,12 +18,12 @@ class UserApiField
     const PRICE = 'price';
     const BIOGRAPHY = 'biography';
     const PAYPAL_ADDRESS = 'paypalAddress';
-
     const TOKEN = 'token';
-
     const DISCOUNT_CODE = 'discountCode';
     const DISCOUNT_PERCENT = 'discountPercent';
     const INSTAGRAM_USERNAME = 'instagramUsername';
     const YOUTUBE_USERNAME = 'youtubeUsername';
     const TIKTOK_USERNAME = 'tiktokUsername';
+    const DISCOUNT_REQUEST_STATUS = 'discountRequestStatus';
+    const DISCOUNT_REQUEST_PERCENT = 'discountRequestPercent';
 }

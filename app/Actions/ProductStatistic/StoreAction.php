@@ -21,8 +21,8 @@ class StoreAction extends Action
         if (empty($user)) {
             throw new CustomException('User Not Found', 404);
         }
-
         $data[ProductStatisticApiField::USER_ID] = $user->id;
+        $data[ProductStatisticApiField::EARNING] = ($user->discount_percent / 100) * $data[ProductStatisticApiField::TENDERED];
 
         $productStatistic = ProductStatistic::create($this->toDBUsageField($data));
 

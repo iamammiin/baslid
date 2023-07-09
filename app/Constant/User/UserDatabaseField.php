@@ -22,6 +22,8 @@ class UserDatabaseField
     const INSTAGRAM_USERNAME = 'instagram_username';
     const YOUTUBE_USERNAME = 'youtube_username';
     const TIKTOK_USERNAME = 'tiktok_username';
+    const DISCOUNT_REQUEST_STATUS = 'discount_request_status';
+    const DISCOUNT_REQUEST_PERCENT = 'discount_request_percent';
     const AVAILABLE_FOR_CREATE_OR_UPDATE = [
         self::FIRST_NAME,
         self::LAST_NAME,
@@ -40,6 +42,8 @@ class UserDatabaseField
         self::DISCOUNT_PERCENT,
         self::INSTAGRAM_USERNAME,
         self::YOUTUBE_USERNAME,
-        self::TIKTOK_USERNAME
+        self::TIKTOK_USERNAME,
+        self::DISCOUNT_REQUEST_PERCENT,
+        self::DISCOUNT_REQUEST_STATUS
     ];
 }

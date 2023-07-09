@@ -15,7 +15,6 @@ use Illuminate\Foundation\Http\FormRequest;
  *      @OA\Property(property="image", title="image", description="image url of product", type="string",example="mouse.jpeg"),
  *      @OA\Property(property="date", title="date", description="date of product", type="string",example="2023-05-05"),
  *      @OA\Property(property="tendered", title="tendered", description="tendered of product", type="int",example=200),
- *      @OA\Property(property="earning", title="earning", description="earning of product", type="int",example=10),
  *      @OA\Property(property="status", title="status", description="paid status of product", type="bool",example=1),
  * )
  */
@@ -41,7 +40,6 @@ class StoreProductStatisticRequest extends FormRequest
             ProductStatisticApiField::IMAGE => 'required|string',
             ProductStatisticApiField::DATE => 'required|date_format:Y-m-d',
             ProductStatisticApiField::TENDERED => 'required|integer',
-            ProductStatisticApiField::EARNING => 'required|integer',
             ProductStatisticApiField::STATUS => 'required|boolean',
         ];
     }

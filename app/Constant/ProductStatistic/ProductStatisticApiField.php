@@ -11,4 +11,5 @@ class ProductStatisticApiField
     const TENDERED = 'tendered';
     const EARNING = 'earning';
     const STATUS = 'status';
+    const STRIP_ID = 'stripId';
 }

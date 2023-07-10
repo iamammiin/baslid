@@ -16,6 +16,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *      @OA\Property(property="date", title="date", description="date of product", type="string",example="2023-05-05"),
  *      @OA\Property(property="tendered", title="tendered", description="tendered of product", type="int",example=200),
  *      @OA\Property(property="status", title="status", description="paid status of product", type="bool",example=1),
+ *      @OA\Property(property="stripId", title="stripId", description="id if stript transaction for product", type="string",example="12421878678367137"),
  * )
  */
 class StoreProductStatisticRequest extends FormRequest
@@ -41,6 +42,7 @@ class StoreProductStatisticRequest extends FormRequest
             ProductStatisticApiField::DATE => 'required|date_format:Y-m-d',
             ProductStatisticApiField::TENDERED => 'required|integer',
             ProductStatisticApiField::STATUS => 'required|boolean',
+            ProductStatisticApiField::STRIP_ID => 'required|unique:product_statistics,strip_id',
         ];
     }
 }

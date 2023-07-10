@@ -11,6 +11,7 @@ class ProductStatisticDatabaseField
     const TENDERED = 'tendered';
     const EARNING = 'earning';
     const STATUS = 'status';
+    const STRIP_ID = 'strip_id';
 
     const AVAILABLE_FOR_CREATE_OR_UPDATE = [
         self::USER_ID,
@@ -20,5 +21,6 @@ class ProductStatisticDatabaseField
         self::TENDERED,
         self::EARNING,
         self::STATUS,
+        self::STRIP_ID
     ];
 }

@@ -22,7 +22,7 @@ class AcceptOrRejectRequestDiscountChangesAction extends Action
             throw new CustomException('User Not Found', 404);
         }
 
-        if (empty($user->{UserDatabaseField::DISCOUNT_REQUEST_PERCENT})){
+        if ($user->{UserDatabaseField::DISCOUNT_REQUEST_PERCENT} === null){
             throw new CustomException('not have discount change request', 400);
         }
 

@@ -1,28 +1,18 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\Authentication\ {
-    RegisterController,
-    LoginController,
+use App\Http\Controllers\Authentication\{ChangePasswordController,
     GetProfileController,
-    ChangePasswordController,
+    LoginController,
     LogoutController,
     RefreshTokenController,
-    UploadAvatarController,
-    UpdateController
-};
-
-use App\Http\Controllers\ProductStatistic\ {
-    StoreController,
-    GetListController,
-    GetEarningHistoryController
-};
-use App\Http\Controllers\User\{
-    AcceptOrRejectDiscountController,
-    GetListController as GetListUserController
-
-};
+    RegisterController,
+    UpdateController,
+    UploadAvatarController};
+use App\Http\Controllers\ProductStatistic\{GetEarningHistoryController, GetListController, StoreController};
+use App\Http\Controllers\User\{AcceptOrRejectDiscountController,
+    GetListController as GetListUserController,
+    PaidController};
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,9 +48,10 @@ Route::group([
     'prefix' => 'users'
 ], function () {
     Route::post('/{userId}/accept-reject-discount', AcceptOrRejectDiscountController::class);
+    Route::post('/{userId}/paid-all-product', PaidController::class);
     Route::get('/', GetListUserController::class);
 });
 
-Route::post('/product-statistic/{userDiscountCode}', StoreController::class);
+Route::post('/product-statistic/{userDiscountCode}', StoreController::class)->where('userDiscountCode', '[0-9]+');
 Route::get('/product-statistic', GetListController::class)->middleware('auth:api');
 Route::get('/product-statistic/earning-history', GetEarningHistoryController::class)->middleware('auth:api');

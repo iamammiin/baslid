@@ -77,19 +77,29 @@ class User extends Authenticatable implements JWTSubject
 
     protected $appends = [
         'salesProductCount',
-        'balance'
+        'balance',
+        'paidOut'
     ];
 
-    public function getSalesProductCountAttribute()
+    public function getSalesProductCountAttribute(): int
     {
         return count($this->productStatistic);
     }
 
-    public function getBalanceAttribute()
+    public function getBalanceAttribute(): int
     {
-        $date = Carbon::now();
-        return (int) $this->productStatistic()->whereYear(ProductStatisticDatabaseField::DATE, $date->year)
-            ->whereMonth(ProductStatisticDatabaseField::DATE, $date->month)
+//        $date = Carbon::now();
+        return (int)$this->productStatistic()
+            ->where(ProductStatisticDatabaseField::STATUS, 1)
+//            ->whereYear(ProductStatisticDatabaseField::DATE, $date->year)
+//            ->whereMonth(ProductStatisticDatabaseField::DATE, $date->month)
+            ->sum(ProductStatisticDatabaseField::EARNING);
+    }
+
+    public function getPaidOutAttribute(): int
+    {
+        return (int)$this->productStatistic()
+            ->where(ProductStatisticDatabaseField::STATUS, 2)
             ->sum(ProductStatisticDatabaseField::EARNING);
     }
 
